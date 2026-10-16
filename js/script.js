@@ -2,7 +2,7 @@
   let skillsData = [
     {
       category: 'Basics',
-      stepIcon: '../images/basics.png',
+      stepIcon: './images/basics.png',
       active: true,
       skill: [
         {
@@ -61,7 +61,7 @@
     },
     {
       category: 'CSS',
-      stepIcon: '../images/css.png',
+      stepIcon: './images/css.png',
       active: false,
       skill: [
         {
@@ -195,7 +195,7 @@
     },
     {
       category: 'JavaScript',
-      stepIcon: '../images/js.png',
+      stepIcon: './images/js.png',
       active: false,
       skill: [
         {
@@ -306,7 +306,7 @@
     },
     {
       category: 'Managers',
-      stepIcon: '../images/managers.png',
+      stepIcon: './images/managers.png',
       active: false,
       skill: [
         {
