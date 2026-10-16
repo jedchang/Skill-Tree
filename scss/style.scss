@@ -1,0 +1,503 @@
+$purpleColor1: #8000ff;
+$purpleColor2: #6900d1;
+$purpleColor3: #35006a;
+$purpleColor4: #250060;
+$pinkColorLight: #ff0093;
+$pinkColorDark: #d10079;
+$grayColorLight: #ffffff;
+$grayColorDark: #000000;
+$setTransition: all 0.4s ease-in-out;
+
+@mixin center($t: 50%, $l: 50%) {
+  position: absolute;
+  top: $t;
+  left: $l;
+  transform: translate(-$l);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+a {
+  text-decoration: none;
+  transition: $setTransition;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#250060+0,070011+51,250060+100 */
+  background: #250060; /* Old browsers */
+  background: -moz-linear-gradient(left, #250060 0%, #070011 51%, #250060 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #250060 0%, #070011 51%, #250060 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #250060 0%,
+    #070011 51%,
+    #250060 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#250060', endColorstr='#250060',GradientType=1 ); /* IE6-9 */
+}
+
+body.completed {
+  animation: isCompleted 0.2s infinite;
+}
+@keyframes isCompleted {
+  0% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #2f007a 0%, #12002b 51%, #2f007a 100%);
+  }
+  100% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+}
+@-moz-keyframes isCompleted {
+  0% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #2f007a 0%, #12002b 51%, #2f007a 100%);
+  }
+  100% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+}
+@-webkit-keyframes isCompleted {
+  0% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+  50% {
+    background: linear-gradient(to right, #2f007a 0%, #12002b 51%, #2f007a 100%);
+  }
+  100% {
+    background: linear-gradient(to right, #250060 0%, #070011 51%, #250060 100%);
+  }
+}
+
+#app {
+  width: 1024px;
+  height: 768px;
+  min-width: 1000px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+/* ------------------------------------
+/* LEFT PANEL
+/* ------------------------------------ */
+.left-panel {
+  width: 255px;
+  margin: 40px 0 24px 42px;
+  h1 {
+    font-size: 48px;
+    color: $pinkColorLight;
+    font-weight: bold;
+    font-style: italic;
+    height: 111px;
+  }
+  .rank-box {
+    .tag {
+      width: 116px;
+      height: 19px;
+      font-size: 16px;
+      color: $purpleColor4;
+      text-align: center;
+      background-color: $purpleColor1;
+      padding: 4px 16px;
+      letter-spacing: -0.7px;
+      margin: 24px 0 8px 0;
+    }
+    .first,
+    .last {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      border-bottom: 4px solid $purpleColor1;
+      display: inline-block;
+      height: 41px;
+      line-height: 41px;
+      margin-bottom: 5px;
+    }
+  }
+  .spaceship {
+    margin-top: 50px;
+    position: relative;
+    width: 300px;
+    .ship-pic {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      bottom: -225px;
+      transform: translateX(-50%);
+      animation: myMove 2.5s ease-in-out infinite;
+    }
+    @keyframes myMove {
+      0% {
+        padding-bottom: 10px;
+      }
+      50% {
+        padding-bottom: 20px;
+      }
+      100% {
+        padding-bottom: 10px;
+      }
+    }
+    @-moz-keyframes myMove {
+      0% {
+        padding-bottom: 10px;
+      }
+      50% {
+        padding-bottom: 20px;
+      }
+      100% {
+        padding-bottom: 10px;
+      }
+    }
+    @-webkit-keyframes myMove {
+      0% {
+        padding-bottom: 10px;
+      }
+      50% {
+        padding-bottom: 20px;
+      }
+      100% {
+        padding-bottom: 10px;
+      }
+    }
+
+    .info {
+      width: 296px;
+      position: absolute;
+      top: 260px;
+      left: 0;
+      svg {
+        position: absolute;
+        top: -35px;
+        left: 0px;
+      }
+      p {
+        color: #fff;
+        font-size: 16px;
+        margin: 24px 24px;
+        line-height: 24px;
+        font-weight: 300;
+        span {
+          color: $pinkColorLight;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+/* ------------------------------------
+/* SKILL TREE
+/* ------------------------------------ */
+.skill-tree {
+  margin: 40px 16px 0 75px;
+  .category {
+    display: flex;
+    justify-content: flex-start;
+    pointer-events: none;
+    opacity: 0.4;
+    transition: $setTransition;
+    &.active {
+      pointer-events: auto;
+      opacity: 1;
+      .step {
+        opacity: 1;
+      }
+      .step-icon {
+        opacity: 1;
+      }
+    }
+    .step {
+      position: relative;
+      opacity: 0.4;
+      width: 100px;
+      height: 100px;
+      margin-right: 12px;
+      .level-icon {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        position: relative;
+        img {
+          width: 100%;
+        }
+      }
+      .level-arrow {
+        display: none;
+        width: 40px;
+        height: 15px;
+        background: $purpleColor3;
+        position: absolute;
+        top: 85px;
+        left: 50%;
+        transform: translateX(-50%);
+        &:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: 15px;
+          left: 50%;
+          transform: translateX(-50%);
+          border-style: solid;
+          border-width: 25px 40px 0px 40px;
+          border-color: $purpleColor3 transparent transparent transparent;
+        }
+        &#arrow-0 {
+          height: 15px;
+          &:after {
+            top: 15px;
+          }
+        }
+        &#arrow-1 {
+          height: 125px;
+          &:after {
+            top: 125px;
+          }
+        }
+        &#arrow-2 {
+          height: 125px;
+          &:after {
+            top: 125px;
+          }
+        }
+      }
+    }
+    .skills {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      width: 200px;
+      margin-bottom: 24px;
+      .skill {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+      .item {
+        margin: 0 4px 0 0;
+        height: 100px;
+        position: relative;
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 56px;
+          height: 56px;
+          background-color: rgba(255, 255, 255, 0.1);
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          transition: none;
+          cursor: pointer;
+          &:hover {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+          }
+          &.active {
+            background-color: $purpleColor2;
+            border: 2px solid $pinkColorLight;
+            cursor: default;
+          }
+          i {
+            font-size: 36px;
+            color: #fff;
+          }
+          &.all-done {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            pointer-events: none;
+            cursor: default;
+            i {
+              color: $purpleColor1;
+            }
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.1);
+              border: 2px solid rgba(255, 255, 255, 0.1);
+              cursor: default;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              border-width: 0 16px 16px 0;
+              border-color: transparent $purpleColor1 transparent transparent;
+            }
+            & + .points {
+              color: $purpleColor1;
+            }
+          }
+        }
+        .points {
+          margin-top: 4px;
+          color: #fff;
+          height: 40px;
+          .count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+            height: 16px;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            i {
+              font-size: 16px;
+              margin-right: 3px;
+            }
+            span {
+              height: 16px;
+              line-height: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .basics .right .upper {
+    margin-bottom: 0;
+  }
+  .managers .right {
+    margin-bottom: 0;
+  }
+}
+/* ------------------------------------
+/* RIGHT PANEL
+/* ------------------------------------ */
+.right-panel {
+  width: 296px;
+  // height: 684px;
+  background-color: $purpleColor2;
+  border: 2px solid $pinkColorLight;
+  margin-top: 37px;
+  margin-right: 48px;
+  .skill-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .learn-skill {
+    width: 296px;
+    // height: 306px;
+    background-color: $purpleColor1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+    i {
+      font-size: 156px;
+      color: #fff;
+    }
+    .txt {
+      text-align: center;
+      margin-top: 10px;
+      .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 42px;
+      }
+    }
+  }
+  .recommended {
+    width: 196px;
+    // height: auto;
+    margin: 27px auto 50px auto;
+    text-align: center;
+    i {
+      color: #fff;
+      font-size: 32px;
+    }
+    h3 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .lists {
+      list-style: none;
+      .list {
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      a {
+        display: block;
+        padding: 6px 6px;
+        font-size: 16px;
+        color: #fff;
+        border: 2px solid #ffffff;
+        transition: none;
+        &:hover,
+        &:active {
+          color: $pinkColorLight;
+          border: 2px solid $pinkColorLight;
+        }
+        &.done {
+          color: #fff;
+          background-color: $pinkColorLight;
+          border: 2px solid $pinkColorLight;
+        }
+      }
+    }
+  }
+  .optional {
+    width: 196px;
+    margin: 0 auto 25px auto;
+    text-align: center;
+    i {
+      color: #fff;
+      font-size: 32px;
+    }
+    h3 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .lists {
+      list-style: none;
+      .list {
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      a {
+        display: block;
+        padding: 6px 6px;
+        font-size: 16px;
+        color: #fff;
+        border: 2px solid #ffffff;
+        transition: none;
+        &:hover,
+        &:active {
+          color: $pinkColorLight;
+          border: 2px solid $pinkColorLight;
+        }
+        &.done {
+          color: #fff;
+          background-color: $pinkColorLight;
+          border: 2px solid $pinkColorLight;
+        }
+      }
+    }
+  }
+}

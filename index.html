@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Skill Tree</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,700i,900,900i" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Sharp" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.min.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div class="left-panel">
+      <h1>FRONT-END SKILL TREE</h1>
+      <div class="rank-box">
+        <p class="tag">CURRENT RANK</p>
+        <div class="rank first">{{ rank[nowLevel].firstTitle }}</div>
+        <div class="rank last">{{ rank[nowLevel].lastTitle }}</div>
+      </div>
+      <div class="spaceship" v-if="nowLevel === 0">
+        <img class="ship-pic" src="./images/img-ship-noob.png" />
+        <div class="info">
+          <svg viewBox="0 0 307 193.5">
+            <path fill="none" stroke="#e62288" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10" d="M123.6 40.9l15.7-10.3-14.6-6 42-14.7-77 12 8 7-31.3 12H7.7v143.3h289V40.9z" />
+          </svg>
+          <p>
+            Welcome to aboard. Your mission is:
+            <span>Collect the resources and learn the skills to upgrade the ship.</span>
+            Good luck, captain!
+          </p>
+        </div>
+      </div>
+      <div class="spaceship" v-if="nowLevel === 1">
+        <img class="ship-pic" src="./images/img-ship-beginner.png" />
+        <div class="info">
+          <svg viewBox="0 0 307 193.5">
+            <path fill="none" stroke="#e62288" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10" d="M123.6 40.9l15.7-10.3-14.6-6 42-14.7-77 12 8 7-31.3 12H7.7v143.3h289V40.9z" />
+          </svg>
+          <p>
+            <b>Congratulations!</b> You become the <span>"Front-end Beginner."</span> Keep searching the resources to
+            upgrade
+            to the next level.
+          </p>
+        </div>
+      </div>
+      <div class="spaceship" v-if="nowLevel === 2">
+        <img class="ship-pic" src="./images/img-ship-developer.png" />
+        <div class="info">
+          <svg viewBox="0 0 307 193.5">
+            <path fill="none" stroke="#e62288" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10" d="M123.6 40.9l15.7-10.3-14.6-6 42-14.7-77 12 8 7-31.3 12H7.7v143.3h289V40.9z" />
+          </svg>
+          <p>
+            <b>You're doing well!</b> Now you're a <span>"Front-end Developer."</span> It's close to complete the
+            upgrading
+            program. </br>Next level: <b>Front-end Master.</b>
+          </p>
+        </div>
+      </div>
+      <div class="spaceship" v-if="nowLevel === 3">
+        <img class="ship-pic" src="./images/img-ship-master.png" />
+        <div class="info">
+          <svg viewBox="0 0 307 193.5">
+            <path fill="none" stroke="#e62288" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10" d="M123.6 40.9l15.7-10.3-14.6-6 42-14.7-77 12 8 7-31.3 12H7.7v143.3h289V40.9z" />
+          </svg>
+          <p>
+            <b>Excellent!</b> You're a <span>"Front-end Master"</span> now. But a new galaxy was just detected by the
+            system.
+            </br>Captain, make your choice.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="skill-tree">
+      <div class="category" v-for="(item, index) in skills" :class="{'active': item.active }">
+        <div class="step">
+          <div class="level-arrow" :id="'arrow-' + index"></div>
+          <div class="level-icon">
+            <img :src="item.stepIcon" alt="" />
+          </div>
+        </div>
+        <div class="skills">
+          <div class="skill" v-for="(skill, index) in item.skill">
+            <div class="item">
+              <a class="btn" @click="changeSkill(skill)"
+                :class="{'active' : skill.selected, 'all-done' : skill.allDone}">
+                <i class="material-icons-sharp">{{skill.icon}}</i>
+              </a>
+              <div class="points">
+                <div class="required count">
+                  <i class="material-icons-sharp">settings</i>
+                  <span> {{doneRecommended(skill)}}</span>
+                  <span> /{{skill.recommended.length}} </span>
+                </div>
+                <div class="optional count">
+                  <i class="material-icons-sharp">filter_tilt_shift</i>
+                  <span> {{doneOptional(skill)}}</span>
+                  <span> /{{skill.optional.length}} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel skill-panel">
+      <div class="skill-content">
+        <div class="learn-skill">
+          <i class="material-icons-sharp"> {{filterSkill.icon}} </i>
+          <div class="txt">
+            <div class="title first-word">{{ filterSkill.title.firstWord }}</div>
+            <div class="title second-word">{{ filterSkill.title.secondWord }}</div>
+          </div>
+        </div>
+        <div class="recommended" v-if="filterSkill.recommended.length">
+          <i class="material-icons-sharp">settings</i>
+          <h3>RECOMMENDED</h3>
+          <ul class="lists">
+            <li class="list" v-for="(item, index) in filterSkill.recommended" @click="selectedSkill(item)">
+              <a href="javascript:;" :class="{done : item.clicked}">{{ item.recName }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="optional" v-if="filterSkill.optional.length">
+          <i class="material-icons-sharp">filter_tilt_shift</i>
+          <h3>OPTIONAL</h3>
+          <ul class="lists">
+            <li class="list" v-for="(item, index) in filterSkill.optional" @click="selectedSkill(item)">
+              <a href="javascript:;" :class="{done : item.clicked}">{{ item.optName }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
